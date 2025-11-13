@@ -1,7 +1,7 @@
 package com.kalebhirshfield.woahcab.utils;
 
-import com.kalebhirshfield.woahcab.windows.*;
-import javax.swing.*;
+import com.kalebhirshfield.woahcab.windows.SignInWindow;
+import com.kalebhirshfield.woahcab.windows.MainWindow;
 
 public class WindowManager {
     private static final SignInWindow signInWindow;
@@ -21,9 +21,5 @@ public class WindowManager {
     public static void showMainWindow() {
         signInWindow.setVisible(false);
         mainWindow.setVisible(true);
-    }
-
-    public MainWindow getMainWindow() {
-        return mainWindow;
     }
 }
