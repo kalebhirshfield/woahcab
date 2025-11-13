@@ -24,7 +24,7 @@ public class SupabaseClient {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
+            if (response.isSuccessful()) {
                 return gson.fromJson(response.body().string(), JsonArray.class);
             }
             throw new IOException("Request failed: " + response.code());
@@ -43,7 +43,7 @@ public class SupabaseClient {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
+            if (response.isSuccessful()) {
                 JsonArray results = gson.fromJson(response.body().string(), JsonArray.class);
                 return results.get(0).getAsJsonObject();
             }

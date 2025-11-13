@@ -19,12 +19,12 @@ public class SignInWindow extends JFrame {
         JButton signInButton = new JButton("Sign In");
         JButton signUpButton = new JButton("Sign Up");
 
-        signInButton.addActionListener(e -> {
+        signInButton.addActionListener(_ -> {
             String email = emailField.getText();
             String password = new String(passwordField.getPassword());
             try {
                 if (SupabaseAuth.signIn(email, password)) {
-                    WindowManager.showMainWindow();
+                    WindowManager.createMainWindow();
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid credentials");
                 }
@@ -33,12 +33,12 @@ public class SignInWindow extends JFrame {
             }
         });
 
-        signUpButton.addActionListener(e -> {
+        signUpButton.addActionListener(_ -> {
             String email = emailField.getText();
             String password = new String(passwordField.getPassword());
             try {
                 if (SupabaseAuth.signUp(email, password)) {
-                    WindowManager.showMainWindow();
+                    WindowManager.createMainWindow();
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid credentials");
                 }

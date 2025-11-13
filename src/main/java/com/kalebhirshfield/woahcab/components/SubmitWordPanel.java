@@ -8,10 +8,10 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class SubmitWordPanel extends JPanel {
-    public SubmitWordPanel() {
+    public SubmitWordPanel(Runnable refresh) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JTextField submitWord = new JTextField();
+        JTextField submitWord = new JTextField(20);
         JButton submitButton = new JButton("Submit");
 
         submitButton.addActionListener(e -> {
@@ -21,14 +21,14 @@ public class SubmitWordPanel extends JPanel {
             json.addProperty("user_id", SupabaseAuth.getUserId());
             try {
                 SupabaseClient.insert("words", json, SupabaseAuth.getAccessToken());
-                JOptionPane.showMessageDialog(this, "Word successfully submitted");
                 submitWord.setText("");
+                JOptionPane.showMessageDialog(this, "Word submitted successfully");
+                refresh.run();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Failed to submit word: " + ex.getMessage());
             }
         });
 
-        add(new JLabel("Submit a Word"));
         add(submitWord);
         add(submitButton);
     }
