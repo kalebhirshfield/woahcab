@@ -14,7 +14,7 @@ public class SubmitWordPanel extends JPanel {
         JTextField submitWord = new JTextField(20);
         JButton submitButton = new JButton("Submit");
 
-        submitButton.addActionListener(e -> {
+        submitButton.addActionListener(_ -> {
             String word = submitWord.getText();
             JsonObject json = new JsonObject();
             json.addProperty("word", word);

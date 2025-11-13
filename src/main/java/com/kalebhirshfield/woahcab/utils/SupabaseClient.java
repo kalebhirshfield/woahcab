@@ -31,7 +31,7 @@ public class SupabaseClient {
         }
     }
 
-    public static JsonObject insert(String table, JsonObject data, String accessToken) throws IOException {
+    public static void insert(String table, JsonObject data, String accessToken) throws IOException {
         RequestBody body = RequestBody.create(data.toString(), JSON);
         Request request = new Request.Builder()
                 .url(SUPABASE_URL + "/rest/v1/" + table)
@@ -45,7 +45,8 @@ public class SupabaseClient {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 JsonArray results = gson.fromJson(response.body().string(), JsonArray.class);
-                return results.get(0).getAsJsonObject();
+                results.get(0).getAsJsonObject();
+                return;
             }
             throw new IOException("Insert failed: " + response.code());
         }

@@ -15,7 +15,6 @@ public class SupabaseAuth {
     private static final Gson gson = new Gson();
 
     private static String accessToken;
-    private static String refreshToken;
     private static String userId;
 
     public static boolean signIn(String email, String password) {
@@ -65,7 +64,6 @@ public class SupabaseAuth {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 accessToken = null;
-                refreshToken = null;
                 userId = null;
             }
         } catch (IOException e) {
@@ -78,8 +76,6 @@ public class SupabaseAuth {
             if (response.isSuccessful()) {
                 JsonObject result = gson.fromJson(response.body().string(), JsonObject.class);
                 accessToken = result.get("access_token").getAsString();
-                refreshToken = result.get("refresh_token").getAsString();
-
                 JsonObject user = result.getAsJsonObject("user");
                 userId = user.get("id").getAsString();
 
@@ -93,10 +89,6 @@ public class SupabaseAuth {
 
     public static String getAccessToken() {
         return accessToken;
-    }
-
-    public static String getRefreshToken() {
-        return refreshToken;
     }
 
     public static String getUserId() {
