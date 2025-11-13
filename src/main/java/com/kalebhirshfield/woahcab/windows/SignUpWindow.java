@@ -6,24 +6,28 @@ import com.kalebhirshfield.woahcab.utils.WindowManager;
 
 import javax.swing.*;
 
-public class SignInWindow extends JFrame {
-    public SignInWindow() {
-        setTitle("Woahcab - Sign In");
+public class SignUpWindow extends JFrame {
+    public SignUpWindow() {
+        setTitle("Woahcab - Sign Up");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
+        JTextField usernameField = new JTextField(20);
         JTextField emailField = new JTextField(20);
         JPasswordField passwordField = new JPasswordField(20);
 
-        JButton signInButton = new JButton("Sign In");
-        JButton signUpButton = new JButton("Sign Up Instead");
+        JButton signUpButton = new JButton("Sign Up");
+        JButton signInButton = new JButton("Sign In Instead");
 
-        signInButton.addActionListener(_ -> {
+        signInButton.addActionListener(_ -> WindowManager.createSignInWindow());
+
+        signUpButton.addActionListener(_ -> {
+            String username = usernameField.getText();
             String email = emailField.getText();
             String password = new String(passwordField.getPassword());
             try {
-                if (SupabaseAuth.signIn(email, password)) {
+                if (SupabaseAuth.signUp(username, email, password)) {
                     WindowManager.createMainWindow();
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid credentials");
@@ -33,10 +37,10 @@ public class SignInWindow extends JFrame {
             }
         });
 
-        signUpButton.addActionListener(_ -> WindowManager.createSignUpWindow());
+        HorizontalButtonPanel buttonPanel = new HorizontalButtonPanel(new JButton[]{signUpButton, signInButton});
 
-        HorizontalButtonPanel buttonPanel = new HorizontalButtonPanel(new JButton[]{signInButton, signUpButton});
-
+        add(new JLabel("Username:"));
+        add(usernameField);
         add(new JLabel("Email:"));
         add(emailField);
         add(new JLabel("Password:"));

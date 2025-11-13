@@ -34,10 +34,14 @@ public class SupabaseAuth {
         return isValidResponse(request);
     }
 
-    public static boolean signUp(String email, String password) {
+    public static boolean signUp(String username, String email, String password) {
         JsonObject json = new JsonObject();
         json.addProperty("email", email);
         json.addProperty("password", password);
+
+        JsonObject data = new JsonObject();
+        data.addProperty("display_name", username);
+        json.add("data", data);
 
         RequestBody body = RequestBody.create(json.toString(), JSON);
         Request request = new Request.Builder()
