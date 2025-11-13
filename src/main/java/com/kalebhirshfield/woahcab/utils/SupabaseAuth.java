@@ -16,6 +16,7 @@ public class SupabaseAuth {
 
     private static String accessToken;
     private static String refreshToken;
+    private static String userId;
 
     public static boolean signIn(String email, String password) {
         JsonObject json = new JsonObject();
@@ -30,7 +31,7 @@ public class SupabaseAuth {
                 .addHeader("Content-Type", "application/json")
                 .build();
 
-        return Response(request);
+        return isValidResponse(request);
     }
 
     public static boolean signUp(String email, String password) {
@@ -46,15 +47,19 @@ public class SupabaseAuth {
                 .addHeader("Content-Type", "application/json")
                 .build();
 
-        return Response(request);
+        return isValidResponse(request);
     }
 
-    private static boolean Response(Request request) {
+    private static boolean isValidResponse(Request request) {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
                 JsonObject result = gson.fromJson(response.body().string(), JsonObject.class);
                 accessToken = result.get("access_token").getAsString();
                 refreshToken = result.get("refresh_token").getAsString();
+
+                JsonObject user = result.getAsJsonObject("user");
+                userId = user.get("id").getAsString();
+
                 return true;
             }
             return false;
@@ -69,5 +74,9 @@ public class SupabaseAuth {
 
     public static String getRefreshToken() {
         return refreshToken;
+    }
+
+    public static String getUserId() {
+        return userId;
     }
 }

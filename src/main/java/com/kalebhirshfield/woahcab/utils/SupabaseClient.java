@@ -44,7 +44,8 @@ public class SupabaseClient {
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
-                return gson.fromJson(response.body().string(), JsonObject.class);
+                JsonArray results = gson.fromJson(response.body().string(), JsonArray.class);
+                return results.get(0).getAsJsonObject();
             }
             throw new IOException("Insert failed: " + response.code());
         }

@@ -13,9 +13,7 @@ public class SignInWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        JLabel emailLabel = new JLabel("Email:");
         JTextField emailField = new JTextField(20);
-        JLabel passwordLabel = new JLabel("Password:");
         JPasswordField passwordField = new JPasswordField(20);
 
         JButton signInButton = new JButton("Sign In");
@@ -51,9 +49,9 @@ public class SignInWindow extends JFrame {
 
         HorizontalButtonPanel buttonPanel = new HorizontalButtonPanel(new JButton[]{signInButton, signUpButton});
 
-        add(emailLabel);
+        add(new JLabel("Email:"));
         add(emailField);
-        add(passwordLabel);
+        add(new JLabel("Password:"));
         add(passwordField);
         add(buttonPanel);
     }
