@@ -12,6 +12,7 @@ public class FindWordPanel extends JPanel {
         removeAll();
         JButton refresh = new JButton("Refresh");
         refresh.addActionListener(_ -> refresh());
+        add(refresh);
 
 
 
