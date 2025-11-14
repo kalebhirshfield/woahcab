@@ -21,9 +21,9 @@ public class YourWordsPanel extends JPanel {
             JsonArray words = SupabaseClient.select("words", SupabaseAuth.getAccessToken());
             for (JsonElement jsonWord : words) {
                 if (jsonWord.getAsJsonObject().get("user_id").getAsString().equals(SupabaseAuth.getUserId())) {
-                    String id = jsonWord.getAsJsonObject().get("word_id").getAsString();
+                    String filter = jsonWord.getAsJsonObject().get("word_id").getAsString();
                     String word = jsonWord.getAsJsonObject().get("word").getAsString();
-                    add(new WordPanel(id, word, this::refresh));
+                    add(new DeleteWordPanel(filter, word, this::refresh));
                 }
             }
         } catch (IOException e) {

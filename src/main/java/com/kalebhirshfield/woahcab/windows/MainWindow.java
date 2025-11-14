@@ -1,6 +1,6 @@
 package com.kalebhirshfield.woahcab.windows;
 
-import com.kalebhirshfield.woahcab.components.WordTabs;
+import com.kalebhirshfield.woahcab.components.MainTabs;
 import com.kalebhirshfield.woahcab.utils.SupabaseAuth;
 import com.kalebhirshfield.woahcab.utils.WindowManager;
 
@@ -19,7 +19,7 @@ public class MainWindow extends JFrame {
             WindowManager.createSignInWindow();
         });
 
-        add(new WordTabs());
+        add(new MainTabs());
         add(signOutButton);
     }
 }
