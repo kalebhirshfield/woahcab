@@ -21,6 +21,10 @@ public class WindowManager {
             mainWindow.dispose();
             mainWindow = null;
         }
+        if (signUpWindow != null) {
+            signUpWindow.dispose();
+            signUpWindow = null;
+        }
     }
 
     public static void createSignUpWindow() {

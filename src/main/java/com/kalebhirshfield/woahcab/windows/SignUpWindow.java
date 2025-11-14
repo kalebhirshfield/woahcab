@@ -9,7 +9,7 @@ import javax.swing.*;
 public class SignUpWindow extends JFrame {
     public SignUpWindow() {
         setTitle("Woahcab - Sign Up");
-        setSize(300, 150);
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
