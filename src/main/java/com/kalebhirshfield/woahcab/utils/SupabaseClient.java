@@ -52,6 +52,27 @@ public class SupabaseClient {
         }
     }
 
+    public static void update(String table, String filter, JsonObject data, String accessToken) throws IOException {
+        RequestBody body = RequestBody.create(data.toString(), JSON);
+        Request request = new Request.Builder()
+                .url(SUPABASE_URL + "/rest/v1/" + table + "?" + filter)
+                .patch(body)
+                .addHeader("apikey", SUPABASE_ANON_KEY)
+                .addHeader("Authorization", "Bearer " + accessToken)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Prefer", "return=representation")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (response.isSuccessful()) {
+                JsonArray results = gson.fromJson(response.body().string(), JsonArray.class);
+                results.get(0).getAsJsonObject();
+                return;
+            }
+            throw new IOException("Update failed: " + response.code());
+        }
+    }
+
     public static void delete(String table, String filter, String accessToken) throws IOException {
         Request request = new Request.Builder()
                 .url(SUPABASE_URL + "/rest/v1/" + table + "?" + filter)
