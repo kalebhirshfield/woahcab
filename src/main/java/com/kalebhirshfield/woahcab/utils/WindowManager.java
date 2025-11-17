@@ -4,6 +4,8 @@ import com.kalebhirshfield.woahcab.windows.SignInWindow;
 import com.kalebhirshfield.woahcab.windows.MainWindow;
 import com.kalebhirshfield.woahcab.windows.SignUpWindow;
 
+import javax.swing.*;
+
 
 public class WindowManager {
     private static SignInWindow signInWindow;

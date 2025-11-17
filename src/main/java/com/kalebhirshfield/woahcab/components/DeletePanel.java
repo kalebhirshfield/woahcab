@@ -6,8 +6,8 @@ import com.kalebhirshfield.woahcab.utils.SupabaseClient;
 import javax.swing.*;
 import java.io.IOException;
 
-public class DeleteWordPanel extends JPanel {
-    public DeleteWordPanel(String filter, String word, Runnable refresh) {
+public class DeletePanel extends JPanel {
+    public DeletePanel(String filter, String word, Runnable refresh) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         add(new JLabel(word));
         JButton button = new JButton("Delete");

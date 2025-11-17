@@ -8,8 +8,8 @@ import com.kalebhirshfield.woahcab.utils.SupabaseClient;
 import javax.swing.*;
 import java.io.IOException;
 
-public class YourWordsPanel extends JPanel {
-    public YourWordsPanel() {
+public class ProfilePanel extends JPanel {
+    public ProfilePanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         refresh();
     }
@@ -23,7 +23,7 @@ public class YourWordsPanel extends JPanel {
                 if (jsonWord.getAsJsonObject().get("user_id").getAsString().equals(SupabaseAuth.getUserId())) {
                     String filter = jsonWord.getAsJsonObject().get("word_id").getAsString();
                     String word = jsonWord.getAsJsonObject().get("word").getAsString();
-                    add(new DeleteWordPanel(filter, word, this::refresh));
+                    add(new DeletePanel(filter, word, this::refresh));
                 }
             }
         } catch (IOException e) {

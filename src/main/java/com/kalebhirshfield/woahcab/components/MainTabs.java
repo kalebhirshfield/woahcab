@@ -5,11 +5,12 @@ import javax.swing.*;
 public class MainTabs extends JTabbedPane {
     public MainTabs() {
         setTabPlacement(JTabbedPane.TOP);
-        YourWordsPanel yourWordsPanel = new YourWordsPanel();
-        SubmitWordPanel submitWordPanel = new SubmitWordPanel(yourWordsPanel::refresh);
+        ProfilePanel profilePanel = new ProfilePanel();
+        SubmitPanel submitPanel = new SubmitPanel(profilePanel::refresh);
+        BrowsePanel browsePanel = new BrowsePanel();
 
-        addTab("Your Words", yourWordsPanel);
-        addTab("Submit Word", submitWordPanel);
-        addTab("Find Words", new FindWordPanel());
+        addTab("Profile", profilePanel);
+        addTab("Submit", submitPanel);
+        addTab("Browse", browsePanel);
     }
 }

@@ -38,10 +38,6 @@ public class SupabaseAuth {
         json.addProperty("email", email);
         json.addProperty("password", password);
 
-        JsonObject data = new JsonObject();
-        data.addProperty("display_name", username);
-        json.add("data", data);
-
         RequestBody body = RequestBody.create(json.toString(), JSON);
         Request request = new Request.Builder()
                 .url(SUPABASE_URL + "/auth/v1/signup")
@@ -50,7 +46,18 @@ public class SupabaseAuth {
                 .addHeader("Content-Type", "application/json")
                 .build();
 
-        return isValidResponse(request);
+        if (isValidResponse(request)) {
+            JsonObject user = new JsonObject();
+            user.addProperty("name", username);
+
+            try {
+                SupabaseClient.insert("profiles", user, accessToken);
+                return true;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return false;
     }
 
     public static void signOut() {

@@ -7,8 +7,8 @@ import com.kalebhirshfield.woahcab.utils.SupabaseClient;
 import javax.swing.*;
 import java.io.IOException;
 
-public class SubmitWordPanel extends JPanel {
-    public SubmitWordPanel(Runnable refresh) {
+public class SubmitPanel extends JPanel {
+    public SubmitPanel(Runnable refresh) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JTextField submitWord = new JTextField(20);
