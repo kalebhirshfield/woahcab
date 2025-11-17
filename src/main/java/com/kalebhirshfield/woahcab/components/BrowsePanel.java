@@ -2,7 +2,6 @@ package com.kalebhirshfield.woahcab.components;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.kalebhirshfield.woahcab.utils.SupabaseAuth;
 import com.kalebhirshfield.woahcab.utils.SupabaseClient;
 
