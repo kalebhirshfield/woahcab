@@ -24,10 +24,12 @@ public class BrowsePanel extends JPanel {
             JsonArray words = SupabaseClient.select("words?user_id=not.eq."+SupabaseAuth.getUserId(), SupabaseAuth.getAccessToken());
             for (JsonElement jsonWord : words) {
                 String userId = jsonWord.getAsJsonObject().get("user_id").getAsString();
+                String word = jsonWord.getAsJsonObject().get("word").getAsString();
+                String wordId = jsonWord.getAsJsonObject().get("word_id").getAsString();
                 JsonArray profile = SupabaseClient.select("profiles?user_id=eq."+userId, SupabaseAuth.getAccessToken());
                 JsonElement profileJson = profile.get(0);
                 String name = profileJson.getAsJsonObject().get("name").getAsString();
-                add(new AttemptPanel(name, this::refresh));
+                add(new AttemptPanel(name, word, wordId, this::refresh));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

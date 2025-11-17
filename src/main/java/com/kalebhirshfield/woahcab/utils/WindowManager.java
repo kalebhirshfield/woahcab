@@ -1,5 +1,6 @@
 package com.kalebhirshfield.woahcab.utils;
 
+import com.kalebhirshfield.woahcab.windows.AttemptWindow;
 import com.kalebhirshfield.woahcab.windows.SignInWindow;
 import com.kalebhirshfield.woahcab.windows.MainWindow;
 import com.kalebhirshfield.woahcab.windows.SignUpWindow;
@@ -43,5 +44,10 @@ public class WindowManager {
             signUpWindow.dispose();
             signUpWindow = null;
         }
+    }
+
+    public static void createAttemptWindow(String name, String word, String wordId, Runnable onClick) {
+        AttemptWindow attemptWindow = new AttemptWindow(name, word, wordId, onClick);
+        attemptWindow.setVisible(true);
     }
 }
