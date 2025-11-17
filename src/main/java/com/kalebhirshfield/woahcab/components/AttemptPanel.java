@@ -7,9 +7,7 @@ public class AttemptPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         add(new JLabel(user));
         JButton button = new JButton("Attempt");
-        button.addActionListener(_ -> {
-            onClick.run();
-        });
+        button.addActionListener(_ -> onClick.run());
         add(button);
     }
 }
