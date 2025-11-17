@@ -1,10 +1,6 @@
 package com.kalebhirshfield.woahcab.components;
 
-import com.kalebhirshfield.woahcab.utils.SupabaseAuth;
-import com.kalebhirshfield.woahcab.utils.SupabaseClient;
-
 import javax.swing.*;
-import java.io.IOException;
 
 public class AttemptPanel extends JPanel {
     public AttemptPanel(String user, Runnable onClick) {
@@ -12,7 +8,7 @@ public class AttemptPanel extends JPanel {
         add(new JLabel(user));
         JButton button = new JButton("Attempt");
         button.addActionListener(_ -> {
-
+            onClick.run();
         });
         add(button);
     }
