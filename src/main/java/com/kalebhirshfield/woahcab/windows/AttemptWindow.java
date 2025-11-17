@@ -16,7 +16,7 @@ public class AttemptWindow extends JFrame {
     private final String word;
     private final String wordId;
     private final Runnable onClick;
-    private JsonArray attempts;
+    private JsonArray attempts = new JsonArray();
 
     public AttemptWindow(String name, String word, String wordId, Runnable onClick) {
         setTitle("Attempting "+name+"'s word");
@@ -91,6 +91,7 @@ public class AttemptWindow extends JFrame {
                     update.addProperty("completed", true);
                     update.addProperty("correct", true);
                     SupabaseClient.update("user_word_progress", "word_id=eq."+wordId, update, SupabaseAuth.getAccessToken());
+                    onClick.run();
                     dispose();
                     return;
                 }
@@ -100,6 +101,7 @@ public class AttemptWindow extends JFrame {
                     update.addProperty("completed", true);
                     update.addProperty("correct", false);
                     SupabaseClient.update("user_word_progress", "word_id=eq."+wordId, update, SupabaseAuth.getAccessToken());
+                    onClick.run();
                     dispose();
                     return;
                 }
@@ -116,6 +118,8 @@ public class AttemptWindow extends JFrame {
             onClick.run();
             createAttempt(guess.toString());
             createAttempt();
+            revalidate();
+            repaint();
         });
 
         add(attempt);
@@ -150,6 +154,7 @@ public class AttemptWindow extends JFrame {
         attempt.repaint();
         onClick.run();
         add(attempt);
-
+        revalidate();
+        repaint();
     }
 }
