@@ -1,0 +1,3 @@
+- Swing UI
+- Supabase Auth
+- PostgreSQL DB
