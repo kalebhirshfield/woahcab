@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AttemptWindow extends JFrame {
     private final String word;
@@ -132,18 +133,41 @@ public class AttemptWindow extends JFrame {
 
         ArrayList<JTextField> letterFields = new ArrayList<>();
 
+        HashMap<Character, Integer> letterCount = new HashMap<>();
+        for (int i = 0; i < this.word.length(); i++) {
+            Character key = this.word.charAt(i);
+            letterCount.merge(key, 1, Integer::sum);
+        }
+
+        Color[] letterColour = new Color[word.length()];
+
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == this.word.charAt(i)) {
+                letterColour[i] = Color.GREEN;
+                letterCount.merge(word.charAt(i), -1, Integer::sum);
+            }
+        }
+
+        for (int i = 0; i < word.length(); i++) {
+            if (letterColour[i] == Color.GREEN) {
+                continue;
+            }
+            int count = letterCount.getOrDefault(word.charAt(i), 0);
+            if (count > 0) {
+                letterColour[i] = Color.YELLOW;
+                letterCount.merge(word.charAt(i), -1, Integer::sum);
+            } else {
+                letterColour[i] = Color.LIGHT_GRAY;
+            }
+        }
+
         for (int i = 0; i < word.length(); i++) {
             JTextField letterField = new JTextField(1);
             letterField.setHorizontalAlignment(JTextField.CENTER);
             letterField.setPreferredSize(new Dimension(32, 32));
             letterField.setText(String.valueOf(word.charAt(i)));
-            if (word.charAt(i) == this.word.charAt(i)) {
-                letterField.setBackground(Color.GREEN);
-            } else if (this.word.contains(String.valueOf(word.charAt(i)))) {
-                letterField.setBackground(Color.YELLOW);
-            } else {
-                letterField.setBackground(Color.LIGHT_GRAY);
-            }
+            letterField.setBackground(letterColour[i]);
+
             letterField.setEditable(false);
             letterField.setFocusable(false);
             letterFields.add(letterField);
