@@ -18,6 +18,7 @@ public class BrowsePanel extends JPanel {
         removeAll();
         JButton refresh = new JButton("Refresh");
         refresh.addActionListener(_ -> refresh());
+        refresh.setAlignmentX(CENTER_ALIGNMENT);
         add(refresh);
 
         try {

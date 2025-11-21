@@ -12,6 +12,12 @@ public class SignUpWindow extends JFrame {
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        setResizable(false);
+        setLocationRelativeTo(null);
+
+        JLabel usernameLabel = new JLabel("Username");
+        JLabel emailLabel = new JLabel("Email");
+        JLabel passwordLabel = new JLabel("Password");
 
         JTextField usernameField = new JTextField(20);
         JTextField emailField = new JTextField(20);
@@ -37,14 +43,28 @@ public class SignUpWindow extends JFrame {
             }
         });
 
+        JPanel usernameLabelPanel = new JPanel();
+        usernameLabelPanel.setLayout(new BoxLayout(usernameLabelPanel, BoxLayout.X_AXIS));
+        usernameLabelPanel.add(usernameLabel);
+
+        JPanel emailLabelPanel = new JPanel();
+        emailLabelPanel.setLayout(new BoxLayout(emailLabelPanel, BoxLayout.X_AXIS));
+        emailLabelPanel.add(emailLabel);
+
+        JPanel passwordLabelPanel = new JPanel();
+        passwordLabelPanel.setLayout(new BoxLayout(passwordLabelPanel, BoxLayout.X_AXIS));
+        passwordLabelPanel.add(passwordLabel);
+
         HorizontalButtonPanel buttonPanel = new HorizontalButtonPanel(new JButton[]{signUpButton, signInButton});
 
-        add(new JLabel("Username:"));
+        add(usernameLabelPanel);
         add(usernameField);
-        add(new JLabel("Email:"));
+        add(emailLabelPanel);
         add(emailField);
-        add(new JLabel("Password:"));
+        add(passwordLabelPanel);
         add(passwordField);
         add(buttonPanel);
+
+        pack();
     }
 }

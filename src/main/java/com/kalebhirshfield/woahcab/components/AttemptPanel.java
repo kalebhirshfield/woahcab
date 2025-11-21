@@ -7,6 +7,7 @@ import javax.swing.*;
 public class AttemptPanel extends JPanel {
     public AttemptPanel(String user, String word, String wordId, Runnable onClick) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setAlignmentX(CENTER_ALIGNMENT);
         add(new JLabel(user));
         JButton button = new JButton("Attempt");
         button.addActionListener(_ -> WindowManager.createAttemptWindow(user, word, wordId, onClick));

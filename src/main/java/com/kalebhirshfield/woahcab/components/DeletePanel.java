@@ -9,6 +9,8 @@ import java.io.IOException;
 public class DeletePanel extends JPanel {
     public DeletePanel(String filter, String word, Runnable refresh) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setAlignmentX(CENTER_ALIGNMENT);
+
         add(new JLabel(word));
         JButton button = new JButton("Delete");
         button.addActionListener(_ -> {

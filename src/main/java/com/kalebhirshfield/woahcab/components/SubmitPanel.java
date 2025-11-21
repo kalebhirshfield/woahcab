@@ -5,6 +5,7 @@ import com.kalebhirshfield.woahcab.utils.SupabaseAuth;
 import com.kalebhirshfield.woahcab.utils.SupabaseClient;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class SubmitPanel extends JPanel {
@@ -13,6 +14,8 @@ public class SubmitPanel extends JPanel {
 
         JTextField submitWord = new JTextField(20);
         JButton submitButton = new JButton("Submit");
+
+        submitWord.setMaximumSize(new Dimension(Integer.MAX_VALUE, submitWord.getPreferredSize().height));
 
         submitButton.addActionListener(_ -> {
             String word = submitWord.getText();
@@ -29,7 +32,11 @@ public class SubmitPanel extends JPanel {
             }
         });
 
+        JPanel submitButtonPanel = new JPanel();
+        submitButtonPanel.setLayout(new BoxLayout(submitButtonPanel, BoxLayout.X_AXIS));
+        submitButtonPanel.add(submitButton);
+
         add(submitWord);
-        add(submitButton);
+        add(submitButtonPanel);
     }
 }
