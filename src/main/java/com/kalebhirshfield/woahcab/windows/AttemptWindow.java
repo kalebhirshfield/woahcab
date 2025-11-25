@@ -24,6 +24,7 @@ public class AttemptWindow extends JFrame {
         setSize(200, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        setLocationRelativeTo(null);
 
         this.word = word;
         this.wordId = wordId;
@@ -69,6 +70,8 @@ public class AttemptWindow extends JFrame {
             attempt.add(letterField);
         }
 
+        JPanel buttonPanel = new JPanel();
+
         JButton button = new JButton("Check");
         button.addActionListener(_ -> {
             StringBuilder guess = new StringBuilder();
@@ -113,7 +116,7 @@ public class AttemptWindow extends JFrame {
             }
 
             remove(attempt);
-            remove(button);
+            remove(buttonPanel);
             attempt.revalidate();
             attempt.repaint();
             onClick.run();
@@ -123,8 +126,13 @@ public class AttemptWindow extends JFrame {
             repaint();
         });
 
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.add(button);
+
         add(attempt);
-        add(button);
+        add(buttonPanel);
+
+        pack();
     }
 
     public void createAttempt(String word) {
@@ -180,5 +188,7 @@ public class AttemptWindow extends JFrame {
         add(attempt);
         revalidate();
         repaint();
+
+        pack();
     }
 }

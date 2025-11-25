@@ -18,7 +18,18 @@ public class SubmitPanel extends JPanel {
         submitWord.setMaximumSize(new Dimension(Integer.MAX_VALUE, submitWord.getPreferredSize().height));
 
         submitButton.addActionListener(_ -> {
-            String word = submitWord.getText();
+            String word = submitWord.getText().toLowerCase();
+            if (word.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter a word");
+                return;
+            }
+            for (char c : word.toCharArray()) {
+                if (!Character.isLetter(c)) {
+                    JOptionPane.showMessageDialog(this, "Word can only contain letters");
+                    return;
+                }
+            }
+
             JsonObject json = new JsonObject();
             json.addProperty("word", word);
             json.addProperty("user_id", SupabaseAuth.getUserId());
