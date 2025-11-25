@@ -81,6 +81,10 @@ public class AttemptWindow extends JFrame {
                     JOptionPane.showMessageDialog(this, "Please fill in all letters");
                     return;
                 }
+                if (Character.isLetter(letterField.getText().charAt(0))) {
+                    JOptionPane.showMessageDialog(this, "Letters can only be alphabetic characters");
+                    return;
+                }
 
                 guess.append(letterField.getText().toLowerCase());
             }
