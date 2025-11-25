@@ -4,14 +4,17 @@ import com.kalebhirshfield.woahcab.utils.SupabaseAuth;
 import com.kalebhirshfield.woahcab.utils.SupabaseClient;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class DeletePanel extends JPanel {
     public DeletePanel(String filter, String word, Runnable refresh) {
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setAlignmentX(CENTER_ALIGNMENT);
+        setLayout(new BorderLayout(8, 0));
 
-        add(new JLabel(word));
+        JLabel wordLabel = new JLabel(word);
+        wordLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        wordLabel.setPreferredSize(new Dimension(90, wordLabel.getPreferredSize().height));
+
         JButton button = new JButton("Delete");
         button.addActionListener(_ -> {
             try {
@@ -22,6 +25,9 @@ public class DeletePanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Failed to delete word: " + ex.getMessage());
             }
         });
-        add(button);
+        button.setPreferredSize(new Dimension(100, button.getPreferredSize().height));
+
+        add(wordLabel, BorderLayout.WEST);
+        add(button, BorderLayout.EAST);
     }
 }

@@ -9,8 +9,10 @@ public class MainTabs extends JTabbedPane {
         SubmitPanel submitPanel = new SubmitPanel(profilePanel::refresh);
         BrowsePanel browsePanel = new BrowsePanel();
 
+        JScrollPane scrollPane = new JScrollPane(browsePanel);
+
         addTab("Profile", profilePanel);
         addTab("Submit", submitPanel);
-        addTab("Browse", browsePanel);
+        addTab("Browse", scrollPane);
     }
 }

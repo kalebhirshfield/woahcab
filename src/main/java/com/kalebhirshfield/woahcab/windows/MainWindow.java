@@ -9,7 +9,7 @@ import javax.swing.*;
 public class MainWindow extends JFrame {
     public MainWindow() {
         setTitle("Woahcab");
-        setSize(300, 300);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         setLocationRelativeTo(null);
@@ -26,7 +26,5 @@ public class MainWindow extends JFrame {
 
         add(new MainTabs());
         add(signOutButtonPanel);
-
-        pack();
     }
 }
