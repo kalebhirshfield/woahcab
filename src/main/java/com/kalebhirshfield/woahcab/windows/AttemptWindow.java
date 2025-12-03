@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.kalebhirshfield.woahcab.components.LettersPanel;
 import com.kalebhirshfield.woahcab.utils.SupabaseAuth;
 import com.kalebhirshfield.woahcab.utils.SupabaseClient;
 
@@ -18,6 +19,7 @@ public class AttemptWindow extends JFrame {
     private final String wordId;
     private final Runnable onClick;
     private JsonArray attempts = new JsonArray();
+    private LettersPanel lettersPanel;
 
     public AttemptWindow(String name, String word, String wordId, Runnable onClick) {
         setTitle("Attempting "+name+"'s word");
@@ -29,6 +31,7 @@ public class AttemptWindow extends JFrame {
         this.word = word;
         this.wordId = wordId;
         this.onClick = onClick;
+        this.lettersPanel = new LettersPanel();
 
         try {
             JsonArray progress = SupabaseClient.select("user_word_progress?word_id=eq."+wordId, SupabaseAuth.getAccessToken());
@@ -81,7 +84,7 @@ public class AttemptWindow extends JFrame {
                     JOptionPane.showMessageDialog(this, "Please fill in all letters");
                     return;
                 }
-                if (Character.isLetter(letterField.getText().charAt(0))) {
+                if (!Character.isLetter(letterField.getText().charAt(0))) {
                     JOptionPane.showMessageDialog(this, "Letters can only be alphabetic characters");
                     return;
                 }
@@ -135,6 +138,7 @@ public class AttemptWindow extends JFrame {
 
         add(attempt);
         add(buttonPanel);
+        add(lettersPanel);
 
         pack();
     }
@@ -160,6 +164,8 @@ public class AttemptWindow extends JFrame {
             }
         }
 
+        ArrayList<Character> wrongLetters = new ArrayList<>();
+
         for (int i = 0; i < word.length(); i++) {
             if (letterColour[i] == Color.GREEN) {
                 continue;
@@ -170,6 +176,7 @@ public class AttemptWindow extends JFrame {
                 letterCount.merge(word.charAt(i), -1, Integer::sum);
             } else {
                 letterColour[i] = Color.LIGHT_GRAY;
+                wrongLetters.add(word.charAt(i));
             }
         }
 
@@ -184,6 +191,10 @@ public class AttemptWindow extends JFrame {
             letterField.setFocusable(false);
             letterFields.add(letterField);
             attempt.add(letterField);
+        }
+
+        if (!wrongLetters.isEmpty()) {
+            lettersPanel.update(wrongLetters);
         }
 
         attempt.revalidate();
