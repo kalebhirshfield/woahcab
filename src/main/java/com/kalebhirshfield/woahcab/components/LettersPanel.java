@@ -18,12 +18,19 @@ public class LettersPanel extends JPanel {
             if (!this.letters.contains(c)) {
                 this.letters.add(c);
             }
+        }
 
-            JLabel letterLabel = new JLabel(String.valueOf(c));
-            letterLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            letterLabel.setOpaque(true);
-            letterLabel.setBackground(Color.LIGHT_GRAY);
-            add(letterLabel);
+        this.letters.sort(Character::compareTo);
+
+        for (char c : this.letters) {
+            JTextField field = new JTextField(1);
+            field.setHorizontalAlignment(JTextField.CENTER);
+            field.setPreferredSize(new Dimension(32, 32));
+            field.setText(String.valueOf(c));
+            field.setBackground(Color.LIGHT_GRAY);
+            field.setEditable(false);
+            field.setFocusable(false);
+            add(field);
         }
 
         revalidate();

@@ -176,7 +176,9 @@ public class AttemptWindow extends JFrame {
                 letterCount.merge(word.charAt(i), -1, Integer::sum);
             } else {
                 letterColour[i] = Color.LIGHT_GRAY;
-                wrongLetters.add(word.charAt(i));
+                if (!wrongLetters.contains(word.charAt(i))) {
+                    wrongLetters.add(word.charAt(i));
+                }
             }
         }
 
