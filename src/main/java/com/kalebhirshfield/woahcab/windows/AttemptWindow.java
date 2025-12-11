@@ -27,6 +27,7 @@ public class AttemptWindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         setLocationRelativeTo(null);
+        setMinimumSize(new Dimension(500, 200));
 
         this.word = word;
         this.wordId = wordId;
