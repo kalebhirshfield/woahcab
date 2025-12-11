@@ -4,7 +4,7 @@ import com.kalebhirshfield.woahcab.utils.WindowManager;
 import javax.swing.*;
 
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(WindowManager::new);
     }
 }
