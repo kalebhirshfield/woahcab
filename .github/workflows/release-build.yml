@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write    # important for upload-release-asset
+      packages: read
 
     steps:
     - uses: actions/checkout@v4
