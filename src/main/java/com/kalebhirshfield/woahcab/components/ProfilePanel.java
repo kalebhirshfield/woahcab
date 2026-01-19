@@ -4,8 +4,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.kalebhirshfield.woahcab.utils.SupabaseAuth;
 import com.kalebhirshfield.woahcab.utils.SupabaseClient;
+import com.kalebhirshfield.woahcab.utils.WindowManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class ProfilePanel extends JPanel {
@@ -29,6 +31,12 @@ public class ProfilePanel extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        JButton recentButton = new JButton("Recent Words");
+        recentButton.addActionListener(_ -> WindowManager.createHistoryWindow());
+        recentButton.setPreferredSize(new Dimension(100, recentButton.getPreferredSize().height));
+
+        add(recentButton);
 
         revalidate();
         repaint();

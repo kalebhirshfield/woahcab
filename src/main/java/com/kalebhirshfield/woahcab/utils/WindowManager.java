@@ -1,11 +1,6 @@
 package com.kalebhirshfield.woahcab.utils;
 
-import com.kalebhirshfield.woahcab.windows.AttemptWindow;
-import com.kalebhirshfield.woahcab.windows.SignInWindow;
-import com.kalebhirshfield.woahcab.windows.MainWindow;
-import com.kalebhirshfield.woahcab.windows.SignUpWindow;
-
-import javax.swing.*;
+import com.kalebhirshfield.woahcab.windows.*;
 
 
 public class WindowManager {
@@ -49,5 +44,10 @@ public class WindowManager {
     public static void createAttemptWindow(String name, String word, String wordId, Runnable onClick) {
         AttemptWindow attemptWindow = new AttemptWindow(name, word, wordId, onClick);
         attemptWindow.setVisible(true);
+    }
+
+    public static void createHistoryWindow() {
+        RecentWindow recentWindow = new RecentWindow();
+        recentWindow.setVisible(true);
     }
 }
