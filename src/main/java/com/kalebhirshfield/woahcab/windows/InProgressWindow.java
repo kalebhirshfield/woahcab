@@ -10,14 +10,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class RecentWindow extends JFrame {
-    public RecentWindow() {
+public class InProgressWindow extends JFrame {
+    public InProgressWindow() {
         setTitle("Recent Words");
         setSize(200, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         setLocationRelativeTo(null);
-        setMinimumSize(new Dimension(500, 200));
+        setMinimumSize(new Dimension(200, 200));
 
         try {
             JsonArray words = SupabaseClient.select("user_word_progress?user_id=eq."+SupabaseAuth.getUserId()+"&completed=eq.FALSE", SupabaseAuth.getAccessToken());

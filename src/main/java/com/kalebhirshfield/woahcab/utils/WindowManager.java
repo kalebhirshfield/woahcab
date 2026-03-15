@@ -46,8 +46,13 @@ public class WindowManager {
         attemptWindow.setVisible(true);
     }
 
+    public static void createInProgressWindow() {
+        InProgressWindow inProgressWindow = new InProgressWindow();
+        inProgressWindow.setVisible(true);
+    }
+
     public static void createHistoryWindow() {
-        RecentWindow recentWindow = new RecentWindow();
-        recentWindow.setVisible(true);
+        HistoryWindow historyWindow = new HistoryWindow();
+        historyWindow.setVisible(true);
     }
 }

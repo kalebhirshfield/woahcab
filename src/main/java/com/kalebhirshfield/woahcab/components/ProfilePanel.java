@@ -32,11 +32,17 @@ public class ProfilePanel extends JPanel {
             throw new RuntimeException(e);
         }
 
-        JButton recentButton = new JButton("Recent Words");
-        recentButton.addActionListener(_ -> WindowManager.createHistoryWindow());
-        recentButton.setPreferredSize(new Dimension(100, recentButton.getPreferredSize().height));
+        JButton inProgressButton = new JButton("In Progress");
+        inProgressButton.addActionListener(_ -> WindowManager.createInProgressWindow());
+        inProgressButton.setPreferredSize(new Dimension(100, inProgressButton.getPreferredSize().height));
 
-        add(recentButton);
+        JButton historyButton = new JButton("History");
+        historyButton.addActionListener(_ -> WindowManager.createHistoryWindow());
+        historyButton.setPreferredSize(new Dimension(100, historyButton.getPreferredSize().height));
+
+        HorizontalButtonPanel buttonPanel = new HorizontalButtonPanel(new JButton[]{inProgressButton, historyButton});
+        buttonPanel.setAlignmentX(CENTER_ALIGNMENT);
+        add(buttonPanel);
 
         revalidate();
         repaint();
