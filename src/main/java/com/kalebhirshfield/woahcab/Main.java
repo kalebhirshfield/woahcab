@@ -5,6 +5,6 @@ import javax.swing.*;
 
 public class Main {
     static void main() {
-        SwingUtilities.invokeLater(WindowManager::new);
+        SwingUtilities.invokeLater(WindowManager::createSignInWindow);
     }
 }

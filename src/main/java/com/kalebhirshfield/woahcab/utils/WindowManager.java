@@ -2,15 +2,10 @@ package com.kalebhirshfield.woahcab.utils;
 
 import com.kalebhirshfield.woahcab.windows.*;
 
-
 public class WindowManager {
     private static SignInWindow signInWindow;
     private static SignUpWindow signUpWindow;
     private static MainWindow mainWindow;
-
-    static {
-        createSignInWindow();
-    }
 
     public static void createSignInWindow() {
         signInWindow = new SignInWindow();
